@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product API</title>
+</head>
+<body>
+
+<h2>Product List</h2>
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Price</th>
+    </tr>
+    <tbody id="data"></tbody>
+</table>
+
+<script>
+fetch("https://dummyjson.com/products")
+.then(res => res.json())
+.then(result => {
+    document.getElementById("data").innerHTML =
+    result.products.map(p => `
+        <tr>
+            <td><img src="${p.thumbnail}" width="60"></td>
+            <td>${p.title}</td>
+            <td>$${p.price}</td>
+        </tr>
+    `).join("");
+});
+</script>
+
+</body>
+</html>
